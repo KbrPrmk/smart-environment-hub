@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": -91.3, "left": 110.2, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -134.1,
+      "left": 378.6,
+      "attrs": { "temperature": "-25.3", "humidity": "11.5" }
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr1",
+      "top": -236.8,
+      "left": 557.6,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 215.15,
+      "left": -9.6,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 234.35,
+      "left": -9.6,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": 253.55,
+      "left": -9.6,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": -233.6,
+      "left": -311.2,
+      "attrs": { "pins": "i2c" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 227,
+      "left": 336,
+      "attrs": { "color": "green", "xray": "1" }
+    },
+    {
+      "type": "wokwi-rgb-led",
+      "id": "rgb1",
+      "top": 320.8,
+      "left": 10.7,
+      "attrs": { "common": "cathode" }
+    }
+  ],
+  "connections": [
+    [ "esp:D15", "dht1:SDA", "green", [ "h191.7", "v-0.2" ] ],
+    [ "dht1:VCC", "esp:3V3", "red", [ "v86.4" ] ],
+    [ "dht1:GND", "esp:GND.1", "black", [ "v76.9" ] ],
+    [ "ldr1:VCC", "esp:3V3", "red", [ "h28.8", "v288" ] ],
+    [ "ldr1:GND", "esp:GND.1", "black", [ "h9.6", "v268.5" ] ],
+    [ "esp:D25", "r1:1", "red", [] ],
+    [ "r1:2", "rgb1:R", "red", [] ],
+    [ "esp:D26", "r2:1", "green", [] ],
+    [ "r2:2", "rgb1:G", "green", [] ],
+    [ "esp:D27", "r3:1", "blue", [] ],
+    [ "r3:2", "rgb1:B", "blue", [] ],
+    [ "rgb1:COM", "esp:GND.2", "black", [ "h57.7", "v-288.3" ] ],
+    [ "esp:GND.2", "lcd1:GND", "black", [ "h-460.8", "v-259.3" ] ],
+    [ "esp:3V3", "lcd1:VCC", "green", [ "v0", "h-547.5", "v-259.2" ] ],
+    [ "lcd1:SDA", "esp:D21", "green", [ "h-19.2", "v125" ] ],
+    [ "esp:D22", "lcd1:SCL", "green", [ "h-528.3", "v-115.5" ] ],
+    [ "btn1:2.l", "esp:D18", "green", [ "h-96", "v-268.6" ] ],
+    [ "btn1:1.r", "esp:GND.2", "green", [ "v0" ] ],
+    [ "ldr1:AO", "esp:D34", "green", [ "h0", "v104.9", "h-268.8", "v-67.2", "h-192", "v105.6" ] ]
+  ],
+  "serialMonitor": { "display": "always" },
+  "dependencies": {}
+}
